@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Зачем заголовок, если никто не читает</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #444;
+      --primary: #0056b3;
+      --primary-light: #0066cc;
+      --border: #ddd;
+      --button-bg: #f0f0f0;
+      --button-text: #222;
+    }
+
+    [data-theme="dark"] {
+      --bg: #121727;
+      --text: #e0e0e0;
+      --text-muted: #a0a0a0;
+      --primary: #4ea8de;
+      --primary-light: #73bdf4;
+      --border: #333;
+      --button-bg: #222;
+      --button-text: #f0f0f0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin: 0.5rem 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 2rem;
+    }
+
+    p, ul {
+      color: var(--text);
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: var(--text-muted);
+    }
+
+    .theme-toggle {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      float: right;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .tech-lists {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-lists ul {
+      flex: 1;
+      min-width: 250px;
+      list-style: disc inside;
+      margin: 0;
+      padding: 0;
+    }
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <div class="header-top">
+        <button id="themeToggle" class="theme-toggle">Переключить тему</button>
+      </div>
+      <h1>Будем знакомы, Никита</h1>
+      <p class="text-muted">
+        Обычный парень, backend-разработчик, геймдев-энтузиаст, системный администратор
+      </p>
+    </header>    
+
+    <section>
+      <h2>Английский язык</h2>
+      <p>
+        Уровень B2. Свободно говорю, пишу, читаю документацию и воспринимаю английскую речь на слух. Более пяти лет общения с носителями и заказчиками из англоязычных стран.
+      </p>
+    </section>
+
+    <section>
+      <h2>О себе</h2>
+      <p>
+        Профессионально занимаюсь backend-разработкой более трёх лет. В университете разрабатываю веб-сайт с адаптивным интерфейсом на основе нечеткой логики. Пишу серверную часть, работаю с базой данных, реализую алгоритмы на клиенте.
+        Использую Node.js и Express.js. Дома развёрнут собственный сервер: FTP, HTTP (Apache2), MySQL, Minecraft-серверы.
+        Увлекаюсь компьютерными сетями и геймдевом (Unity, UE4, Blitz3D и др.), занимаюсь реверс-инжинирингом. Веду
+        <a href="https://www.youtube.com/@RageonGames" class="text-blue-600 dark:text-blue-400 underline font-semibold" target="_blank">YouTube-канал</a>
+        с иностранной аудиторией.
+      </p>
+    </section>
+
+    <section>
+      <h2>Опыт работы</h2>
+      <p>
+        <strong>WaveAccess</strong> — разработчик Node.js, участие в международных проектах (США). Также получил квалификацию ASP.NET-разработчика.
+      </p>
+    </section>
+
+    <section>
+      <h2>Технологический стек</h2>
+      <div class="tech-lists">
+        <ul>
+          <li>.NET/C#, ASP.NET, EF, NHibernate</li>
+          <li>Node.js, Express, NestJS, Sequelize</li>
+          <li>JavaScript, TypeScript, React, HTML, CSS</li>
+          <li>MySQL, PostgreSQL, MSSQL, MongoDB</li>
+          <li>RESTful, SOAP, HTTP</li>
+          <li>GIT (GitHub, GitLab, Gitea, BitBucket)</li>
+        </ul>
+        <ul>
+          <li>Linux (Debian, Ubuntu, Astra)</li>
+          <li>Виртуализация в Windows (Cygwin, WSL)</li>
+          <li>Docker, YAML, XML</li>
+          <li>Сетевые технологии: TCP/IP, HAProxy, nginx, Apache2</li>
+          <li>Keepalived, RabbitMQ, NFS, Samba, GlusterFS</li>
+          <li>FTP, SFTP, CUPS</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Directum</h2>
+      <ul>
+        <li>DirectumRX: администрирование, структура БД, React-контролы</li>
+        <li>DIRECTUM 5: миграция, отчёты PDF/Word/Excel</li>
+        <li>Интеграции через API, файловую систему, БД</li>
+        <li>СБИС, Диадок, развёртывание в закрытых контурах</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Дополнительные навыки</h2>
+      <ul>
+        <li>Разработка игр: Unity, Blitz3D, Clickteam Fusion</li>
+        <li>Платформы: Android, Windows, PS3, PSP, iOS</li>
+        <li>Дизассемблирование (IDA, Ghidra), языки: Python, C/C++, Go, Zig</li>
+      </ul>
+    </section>
+
+    <footer>
+      © Никаких копирайтов, свободу софтвари, 2025
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById("themeToggle");
+    btn.addEventListener("click", () => {
+      const html = document.documentElement;
+      const current = html.getAttribute("data-theme");
+      html.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>
