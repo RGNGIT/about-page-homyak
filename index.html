@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,11 +36,15 @@
       padding: 2rem;
       line-height: 1.6;
       transition: background-color 0.3s, color 0.3s;
+      position: relative;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 900px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -65,7 +70,8 @@
       margin-top: 2rem;
     }
 
-    p, ul {
+    p,
+    ul {
       color: var(--text);
     }
 
@@ -95,17 +101,6 @@
       border-radius: 4px;
       padding: 0.4rem 0.8rem;
       cursor: pointer;
-      float: right;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
     }
 
     .tech-lists {
@@ -122,11 +117,164 @@
       padding: 0;
     }
 
-</style>
-</head>
-<body>
-  <div class="container">
+    #cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 250px;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 80%);
+      transform: translate(-50%, -50%);
+      transition: background 0.3s;
+      z-index: 0;
+      mix-blend-mode: screen;
+    }
 
+    [data-theme="dark"] #cursor-glow {
+      background: radial-gradient(circle, rgba(78, 168, 222, 0.12) 0%, rgba(0, 0, 0, 0) 80%);
+    }
+
+    section {
+      position: relative;
+      margin-bottom: 2rem;
+      z-index: 1;
+    }
+
+    .section-inner {
+      background-color: var(--bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 16px;
+      background-size: 300% 300%;
+      filter: blur(16px);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    #english::before {
+      background: linear-gradient(130deg, #c03dcc, #cc3c84);
+    }
+
+    #myself::before {
+      background: linear-gradient(130deg, #4ea8de, #73bdf4);
+    }
+
+    #exp::before {
+      background: linear-gradient(130deg, #a770ef, #f7797d);
+    }
+
+    #tech::before {
+      background: linear-gradient(130deg, #00c9ff, #92fe9d);
+    }
+
+    #directum::before {
+      background: linear-gradient(130deg, #ff8000, #ffffff);
+    }
+
+    #extras::before {
+      background: linear-gradient(130deg, #ff9a9e, #fad0c4);
+    }
+
+    #english:hover::before,
+    #myself:hover::before,
+    #exp:hover::before,
+    #tech:hover::before,
+    #directum:hover::before,
+    #extras:hover::before {
+      opacity: 0.9;
+    }
+
+    .directum-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .directum-logo {
+      display: none;
+    }
+
+    [data-theme="dark"] .dark-theme {
+      display: inline-block;
+    }
+
+    [data-theme="light"] .light-theme {
+      display: inline-block;
+    }
+
+    [data-theme="dark"] #directum:hover .dark-theme {
+      display: none;
+    }
+
+    [data-theme="dark"] #directum:hover .light-theme {
+      display: inline-block;
+    }
+
+    [data-theme="light"] #directum:hover .light-theme {
+      display: none;
+    }
+
+    [data-theme="light"] #directum:hover .dark-theme {
+      display: inline-block;
+    }
+
+    [data-theme="dark"] #directum:hover .section-inner {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    [data-theme="dark"] #directum:hover p,
+    [data-theme="dark"] #directum:hover li,
+    [data-theme="dark"] #directum:hover a {
+      color: #000000;
+    }
+
+    [data-theme="light"] #directum:hover .section-inner {
+      background-color: #2D2D2D;
+      color: #ffffff;
+    }
+
+    [data-theme="light"] #directum:hover p,
+    [data-theme="light"] #directum:hover li,
+    [data-theme="light"] #directum:hover a {
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      section::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor-glow"></div>
+
+  <div class="container">
     <header class="header">
       <div class="header-top">
         <button id="themeToggle" class="theme-toggle">Переключить тему</button>
@@ -135,72 +283,85 @@
       <p class="text-muted">
         Обычный парень, backend-разработчик, геймдев-энтузиаст, системный администратор (иногда)
       </p>
-    </header>    
+    </header>
 
-    <section>
-      <h2>Английский язык</h2>
-      <p>
-        Уровень B2. Свободно говорю, пишу, читаю документацию и воспринимаю английскую речь на слух. Более пяти лет общения с носителями и заказчиками из англоязычных стран.
-      </p>
+    <section id="myself">
+      <div class="section-inner">
+        <h2>О себе</h2>
+        <p>Профессионально занимаюсь backend-разработкой более трёх лет. В университете разрабатываю веб-сайт с адаптивным интерфейсом на основе нечеткой логики. Пишу серверную часть, работаю с базой данных, реализую алгоритмы на клиенте.
+          Использую Node.js и Express.js. Дома развёрнут собственный сервер: FTP, HTTP (Apache2), MySQL, Minecraft-серверы.
+          Увлекаюсь компьютерными сетями и геймдевом (Unity, UE4, Blitz3D и др.), занимаюсь реверс-инжинирингом. Веду
+          <a href="https://www.youtube.com/@RageonGames" class="text-blue-600 dark:text-blue-400 underline font-semibold" target="_blank">YouTube-канал</a>
+          с иностранной аудиторией.</p>
+      </div>
+    </section>
+    
+    <section id="tech">
+      <div class="section-inner">
+        <h2>Технологический стек</h2>
+        <div class="tech-lists">
+          <ul>
+            <li>.NET/C#, ASP.NET, EF, NHibernate</li>
+            <li>Node.js, Express, NestJS, Sequelize</li>
+            <li>JavaScript, TypeScript, React, HTML, CSS</li>
+            <li>MySQL, PostgreSQL, MSSQL, MongoDB</li>
+            <li>RESTful, SOAP, HTTP</li>
+            <li>GIT (GitHub, GitLab, Gitea, BitBucket)</li>
+          </ul>
+          <ul>
+            <li>Linux (Debian, Ubuntu, Astra)</li>
+            <li>Виртуализация в Windows (Cygwin, WSL)</li>
+            <li>Docker, YAML, XML</li>
+            <li>TCP/IP, HAProxy, nginx, Apache2</li>
+            <li>Keepalived, RabbitMQ, NFS, Samba, GlusterFS</li>
+            <li>FTP, SFTP, CUPS</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>О себе</h2>
-      <p>
-        Профессионально занимаюсь backend-разработкой более трёх лет. В университете разрабатываю веб-сайт с адаптивным интерфейсом на основе нечеткой логики. Пишу серверную часть, работаю с базой данных, реализую алгоритмы на клиенте.
-        Использую Node.js и Express.js. Дома развёрнут собственный сервер: FTP, HTTP (Apache2), MySQL, Minecraft-серверы.
-        Увлекаюсь компьютерными сетями и геймдевом (Unity, UE4, Blitz3D и др.), занимаюсь реверс-инжинирингом. Веду
-        <a href="https://www.youtube.com/@RageonGames" class="text-blue-600 dark:text-blue-400 underline font-semibold" target="_blank">YouTube-канал</a>
-        с иностранной аудиторией.
-      </p>
+    <section id="english">
+      <div class="section-inner">
+        <h2>Английский язык</h2>
+        <p>Уровень B2. Свободно говорю, пишу, читаю документацию и воспринимаю английскую речь на слух. Более пяти лет общения с носителями и заказчиками из англоязычных стран.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Опыт работы</h2>
-      <p>
-        <strong>WaveAccess</strong> — разработчик Node.js, участие в международных проектах (США). Также получил квалификацию ASP.NET-разработчика.
-      </p>
+    <section id="exp">
+      <div class="section-inner">
+        <h2>Опыт работы</h2>
+        <p><strong>WaveAccess</strong> — разработчик Node.js, участие в международных проектах (США). Также получил квалификацию ASP.NET-разработчика.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Технологический стек</h2>
-      <div class="tech-lists">
+    <section id="directum">
+      <div class="section-inner">
+        <h2 class="directum-heading">
+          <span class="directum-logo dark-theme">
+            <img src="./public/directum-white.svg" alt="Directum logo dark" width="140" height="32" />
+          </span>
+          <span class="directum-logo light-theme">
+            <img src="./public/directum-black.svg" alt="Directum logo dark" width="140" height="32" />
+          </span>
+        </h2>
         <ul>
-          <li>.NET/C#, ASP.NET, EF, NHibernate</li>
-          <li>Node.js, Express, NestJS, Sequelize</li>
-          <li>JavaScript, TypeScript, React, HTML, CSS</li>
-          <li>MySQL, PostgreSQL, MSSQL, MongoDB</li>
-          <li>RESTful, SOAP, HTTP</li>
-          <li>GIT (GitHub, GitLab, Gitea, BitBucket)</li>
-        </ul>
-        <ul>
-          <li>Linux (Debian, Ubuntu, Astra)</li>
-          <li>Виртуализация в Windows (Cygwin, WSL)</li>
-          <li>Docker, YAML, XML</li>
-          <li>Сетевые технологии: TCP/IP, HAProxy, nginx, Apache2</li>
-          <li>Keepalived, RabbitMQ, NFS, Samba, GlusterFS</li>
-          <li>FTP, SFTP, CUPS</li>
+          <li>DirectumRX: администрирование, структура БД, React-контролы</li>
+          <li>DIRECTUM 5: миграция, отчёты PDF/Word/Excel</li>
+          <li>Интеграции через API, файловую систему, БД</li>
+          <li>СБИС, Диадок, развёртывание в закрытых контурах</li>
         </ul>
       </div>
     </section>
 
-    <section>
-      <h2>Directum</h2>
-      <ul>
-        <li>DirectumRX: администрирование, структура БД, React-контролы</li>
-        <li>DIRECTUM 5: миграция, отчёты PDF/Word/Excel</li>
-        <li>Интеграции через API, файловую систему, БД</li>
-        <li>СБИС, Диадок, развёртывание в закрытых контурах</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Дополнительные навыки</h2>
-      <ul>
-        <li>Разработка игр: Unity, Blitz3D, Clickteam Fusion</li>
-        <li>Платформы: Android, Windows, PS3, PSP, iOS</li>
-        <li>Дизассемблирование (IDA, Ghidra), языки: Python, C/C++, Go, Zig</li>
-      </ul>
+    <section id="extras">
+      <div class="section-inner">
+        <h2>Дополнительные навыки</h2>
+        <ul>
+          <li>Разработка игр: Unity, Blitz3D, Clickteam Fusion</li>
+          <li>Платформы: Android, Windows, PS3, PSP, iOS</li>
+          <li>Дизассемблирование (IDA, Ghidra), языки: Python, C/C++, Go, Zig</li>
+        </ul>
+      </div>
     </section>
 
     <footer>
@@ -210,11 +371,23 @@
 
   <script>
     const btn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
     btn.addEventListener("click", () => {
-      const html = document.documentElement;
       const current = html.getAttribute("data-theme");
       html.setAttribute("data-theme", current === "dark" ? "light" : "dark");
     });
+
+    const glow = document.getElementById('cursor-glow');
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+
+    if (isDesktop) {
+      document.addEventListener('mousemove', (e) => {
+        glow.style.top = `${e.clientY}px`;
+        glow.style.left = `${e.clientX}px`;
+      });
+    }
   </script>
 </body>
+
 </html>
